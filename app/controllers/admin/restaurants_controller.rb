@@ -9,6 +9,12 @@ class Admin::RestaurantsController < ApplicationController
 
   end
 
+
+  def show
+    @restaurant = Restaurant.find(params[:id])
+  end
+
+
   def new
     @restaurant = Restaurant.new
   end
@@ -29,5 +35,5 @@ class Admin::RestaurantsController < ApplicationController
   def restaurant_params
     params.require(:restaurant).permit(:name, :opening_hours, :tel, :address, :description)
   end
-  
+
 end
