@@ -26,7 +26,7 @@
         <hr>
 
         <div>
-        <%= link_to 'Back to index', admin_restaurants_path %>
+        <%= link_to 'Back to index', restaurants_path %>
         </div>
 
     </div>
@@ -44,5 +44,21 @@
       <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
     </div>
   <% end %>
+
+
+    <!-- 顯示與餐廳相關的評論 -->
+          <% @restaurant.comments.each do |comment| %>
+          <div>
+            <h4><%= comment.user.email.split("@")[0] %></h4>
+            <p><%= simple_format comment.content %></p>
+            <p class="text-muted">
+              <em><%= time_ago_in_words(comment.created_at) %> </em>
+            </p>
+          </div>
+          <hr>
+          <% end %>
+
+
+
   </div>
 </div>

@@ -7,6 +7,7 @@ class Admin::RestaurantsController < Admin::BaseController
 
 
   def show
+    @comment = Comment.new
   end
 
   def edit
