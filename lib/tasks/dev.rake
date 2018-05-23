@@ -4,6 +4,8 @@ namespace :dev do
       #Users.destroy_all
       20.times do |i|
         User.create!(
+            name:  FFaker::Name.first_name,
+            intro: FFaker::Lorem.paragraph,
             email: FFaker::Internet.unique.email,
             password: "12345678"
           )

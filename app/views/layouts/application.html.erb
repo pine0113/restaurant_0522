@@ -26,6 +26,7 @@
 
       <% if current_user %>
         <li> <p class="navbar-text">Hi, <%= current_user.email %> </p></li>
+        <li> <%= link_to('個人頁面', user_path(current_user)) %> </li>
           <% if current_user.admin? %>
             <li><%= link_to('管理後台', admin_restaurants_path) %> </li>
           <% end %>
