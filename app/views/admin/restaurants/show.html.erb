@@ -2,12 +2,13 @@
   <div class="row">
     <div class="col-md-12">
         <h1><%= @restaurant.name %></h1>
-
+        <div>[<%= @restaurant.category.name %>]</div>
 
         <div class="col-md-4">
           <%= image_tag @restaurant.image, class: "img-responsive center-block" %>
           <div class="well">
             <ul class="list-unstyled">
+                
                 <li>Opening Hours:<%= @restaurant.opening_hours %></li>
                 <li>Tel: <%= @restaurant.tel %></li>
                 <li>Address: <%= @restaurant.address %></li>
