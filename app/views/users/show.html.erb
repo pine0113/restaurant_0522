@@ -3,32 +3,57 @@
     <div class="col-md-12">
  
 
-        <div class="col-md-4">    
+        <div class="col-md-4" id="avatarColumn">    
           <div >
+            <% if @user.avatar %>
             <%= image_tag @user.avatar, class: "img-responsive center-block" %>
+            <% end %>
           </div>
         </div>
 
-        <div class="col-md-8">
-            <h1><%= @user.name %></h1>
-             <div><%= @user.email %></div>
+        <div class="col-md-8" id="introColumn">
+            <h2><%= @user.name %></h1>
+             <h4><%= @user.email %></h4>
              <div><%= @user.intro %></div>
+             <% if @user.id == current_user.id %>
+             
+             <%= link_to 'Edit Profile', edit_user_path(current_user)  ,:class=>"btn btn-primary"%>
+             <% end %>
         </div>
         
          <div class="clearfix"></div>
-          <% if @user.id == current_user.id %>
-          <%= link_to 'Edit Profile', edit_user_path(current_user) %>
-          <% end %>
+        
         <hr>
 
-        <div> <%= @commented_restaurants.count %>已評論過的餐廳</div>
-        <% @commented_restaurants.each do |restaurant| %>
-            <div>
 
-          <!-- 按需求讀取資料 -->
-            <%= link_to restaurant.name, restaurant_path(restaurant) %>
+          <div class="panel panel-default">
+            
+            <div class="panel-heading">
+             
+              <h3 class="panel-title">
+                  <%= @commented_restaurants.count %> 已評論過的餐廳
+              </h3>
+           
             </div>
-        <% end %>
+
+            <div class="panel-body">
+            
+                <% @commented_restaurants.each do |restaurant| %>
+                  <div class="my-restaurant">
+                  <div>
+                    <%= image_tag restaurant.image, class: "img-responsive center-block" %>
+                  </div>
+                  <!-- 按需求讀取資料 -->
+                  <%= link_to restaurant.name, restaurant_path(restaurant) %>
+                  </div>
+               <% end %>
+
+            </div>
+
+          </div>
+
+
+       
 
 
         <div>
