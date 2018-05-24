@@ -1,41 +1,45 @@
 <div class="container">
-<h1>餐廳前台</h1>
-
-
-<ul class="nav nav-tabs">
-  <li role="presentation"><%= link_to '首頁', restaurants_path %></li>
-  <li role="presentation"><%= link_to 'Feeds', feeds_restaurants_path %></li>
-</ul>
+ 
+  <h1>餐廳前台</h1>
 
   <div class="row">
-    <div class="col-md-12">
-  
-        <table class="table table-hover table-striped table-bordered">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Category</th>
-              <th>Name</th>
-              <th></th>
-            </tr>
-          </thead>
-        
-          <% @restaurants.each do |restaurant| %>
-            <tr>
-              <td><%= restaurant.id %> </td>
-              <td>[<%= restaurant.category.name %>]</td>
-              <td><%= restaurant.name %></td>
-              <td><%= link_to 'Show', restaurant_path(restaurant) %></td>
-            </tr>
-          <% end %>
 
 
-        </table>
+    <ul class="nav nav-tabs">
+      <li role="presentation"><%= link_to '首頁', restaurants_path %></li>
+      <li role="presentation"><%= link_to 'Feeds', feeds_restaurants_path %></li>
+    </ul>
 
-      <div class="text-center">
-        <%= paginate @restaurants %>
+
+<ul class="nav nav-pills">
+   <li role="presentation"><%= link_to "全部餐廳", root_path %></li>
+    <% @categories.each do |category| %>
+      <li role="presentation"><%= link_to category.name, category_path(category) %></li>
+    <% end %>
+
+</ul>
+
+
+
+    <!-- restaurants list，有多寫restaurant-item的class style -->
+    <% @restaurants.each do |restaurant| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="restaurant-item">
+          <%= image_tag restaurant.image, class: "img-responsive center-block" %>
+          <div class="caption">
+            <h3><%= link_to restaurant.name, restaurant_path(restaurant) %></h3>
+            <p class="label label-default"><%= restaurant.category.name %><p>
+            <p><%= truncate(restaurant.description, length: 80) %></p>
+          </div>
+        </div>
       </div>
-
+    <% end %>
+      
+    <div class="clearfix"></div>
+    <!-- 有generate kaminari paginate bootstrap style -->
+    <div class="text-center">
+      <%= paginate @restaurants %>
     </div>
-  <div>
+      
+
 </div>

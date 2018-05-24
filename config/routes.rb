@@ -19,11 +19,18 @@ Rails.application.routes.draw do
       get :feeds
     end
 
-    # 瀏覽個別餐廳的 Dashboard
+   
     member do
-      get :dashboard
+      get :dashboard # 瀏覽個別餐廳的 Dashboard
+      post :favorite
+      post :unfavorite
     end
+
+  
+
   end
+
+  resources :categories, only: :show
 
   resources :users, only: [:show, :edit, :update]
 
