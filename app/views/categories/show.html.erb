@@ -1,0 +1,30 @@
+<div class="container">
+
+  <h1>餐廳前台</h1>
+
+  <div class="row">
+
+    <ul class="nav nav-tabs">
+      <li role="presentation"><%= link_to '首頁', restaurants_path %></li>
+      <li role="presentation"><%= link_to 'Feeds', feeds_restaurants_path %></li>
+    </ul>
+
+
+    <ul class="nav nav-pills nav-pills-center">
+      <li role="presentation">
+        <%= link_to "全部餐廳", root_path %>
+      </li>
+      <!-- 這邊判斷category==@category的時候要加 li.active -->
+      <% @categories.each do |category| %>
+        <li role="presentation" class="<%= "active" if category == @category %>">
+          <%= link_to category.name, category_path(category) %>
+        </li>
+      <% end %>
+    </ul>
+
+    <br>
+
+    <%= render partial: "shared/restaurant_list" %>
+
+  </div>
+</div>
