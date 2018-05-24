@@ -14,6 +14,10 @@ class User < ApplicationRecord
   has_many :favorited_restaurants, through: :favorites, source: :restaurant
 
 
+  # User可以跟隨很多人，如果User刪掉的話 follow關係也要被刪掉 也可以被很多人跟隨
+  has_many :followships, dependent: :destroy
+  has_many :followings, through: :followships
+
   def admin?
     self.role == "admin"
   end
