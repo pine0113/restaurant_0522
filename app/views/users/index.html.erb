@@ -1,0 +1,30 @@
+<div class="container">
+
+  <h1>美食達人</h1>
+
+  <div class="row">
+
+
+    <% @users.each do |user| %>
+      <div class="col-sm-2 col-md-2">
+        <div class = "user-item">
+
+           <%= image_tag user.avatar, class: "img-responsive center-block" %>
+          
+            <strong><%= link_to user.name, user_path(user) %></strong>
+             
+            <% if user != current_user %>
+
+             <%= render partial: "shared/follow", locals: {user: user} %>
+
+            <% end %>
+
+        </div>
+      </div>
+    <% end %>
+      
+    <div class="clearfix"></div>
+
+
+  </div>
+</div>
