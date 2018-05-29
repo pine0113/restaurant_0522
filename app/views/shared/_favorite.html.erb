@@ -3,3 +3,9 @@
 <% else %>
   <%= link_to 'Favorite', favorite_restaurant_path(restaurant), method: :post, class: "btn btn-primary" %>
 <% end %>
+  
+<% if restaurant.is_liked?(current_user) %>
+  <%= link_to 'Like', unlike_restaurant_path(restaurant), method: :post, class: "btn btn-info" %>
+<% else %>
+  <%= link_to 'Unlike', like_restaurant_path(restaurant), method: :post, class: "btn btn-primary" %>
+<% end %>
