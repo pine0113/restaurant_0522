@@ -9,6 +9,9 @@ end
 def show
   @user = User.find(params[:id])
   @commented_restaurants = @user.restaurants.uniq
+  @favorited_restaurants = @user.favorited_restaurants
+  @followers = @user.followers
+  @followings = @user.followings
 
 end
 
